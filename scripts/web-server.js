@@ -11,9 +11,14 @@ app.use(bodyParser.json());
 app.use(express.static(roothPath + '/app'));
 
 app.get('/data/event/:id', events.get);
-app.post('/data/event/:id', events.save);
+app.get('/data/event', events.getAll);
+app.post('/data/event', events.save);
+
 app.get('/data/user/:userName', users.get);
+app.get('/data/user', users.getAll);
 app.post('/data/user/:userName', users.save);
+
+app.get('*', function(req, res) { res.sendFile(roothPath + '/app/index.html'); });
 
 app.listen(8000);
 console.log('Listening on port 8000...');

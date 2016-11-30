@@ -1,21 +1,10 @@
 'use strict';
 
 eventsApp.controller('EventController',
-    function EventController($scope, $anchorScroll, eventData) {
+    function EventController($scope, $routeParams, $route, eventData) {
 
         $scope.sortorder = 'name';
-        eventData.getEvent()
-            .$promise
-            .then(
-                function(event) {
-                    $scope.event = event;
-                    console.log(event);
-                })
-            .catch(
-                function(response) {
-                    console.log(response);
-                }
-            );
+        $scope.event = $route.current.locals.event;
 
         $scope.upVoteSession = function(session) {
             session.upVoteCount++;
@@ -23,10 +12,6 @@ eventsApp.controller('EventController',
 
         $scope.downVoteSession = function(session) {
             session.upVoteCount--;
-        };
-
-        $scope.scrollToSession = function() {
-            $anchorScroll();
         };
     }
 );

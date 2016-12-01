@@ -1,7 +1,7 @@
 
 <style>
-    input.ng-invalid.ng-dirty {background-color: pink;}
-    input.ng-valid.ng-dirty {background-color: rgba(98, 226, 98, 0.82);}
+    /*input.ng-invalid.ng-dirty {background-color: pink;}
+    input.ng-valid.ng-dirty {background-color: rgba(98, 226, 98, 0.82);}*/
 </style>
             
 <div style="padding-left:20px; padding-right: 20px">
@@ -13,7 +13,10 @@
                 <label for"eventName">Event Name:</label>
                 <input id="eventName" type="text" required ng-model="event.name" placeholder="Name of your event..." />
                 <label for"eventDate">Event Date:</label>
-                <input id="eventDate" type="text" required ng-pattern="/\d\d/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yyyy)..." />
+                <div style="position:relative">
+                    <input id="eventDate" date-keys type="text" ng-pattern="/\d\d/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yyyy)..." />
+                    <date-picker for="eventDate" />
+                </div>
                 <label for"eventTime">Event Time:</label>
                 <input id="eventTime" type="text" ng-model="event.time" placeholder="start and end time..." />
                 <label for"eventLocation">Event Location:</label>

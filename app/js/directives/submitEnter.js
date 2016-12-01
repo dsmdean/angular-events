@@ -6,11 +6,12 @@ eventsApp.directive('submitEnter', function(eventData) {
         link: function(scope, element, attrs, controller) {
             element.on('keydown', function(event) {
                 if(isEnterKeyCode(event.keyCode)) {
-                    var formName = attrs.$observe('name', function(value) {
-                        return value;
+                    var formName;
+                    attrs.$observe('name', function(value) {
+                        formName = value;
+                        console.log(scope.event + ", " + formName);
+                        controller.saveEvent(scope.event, formName);
                     });
-
-                    controller.saveEvent(scope.event, formName);
                 }
             });
         }

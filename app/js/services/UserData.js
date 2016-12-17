@@ -1,15 +1,21 @@
-eventsApp.factory('userData', function($resource) {
-    var resource = $resource('/data/user/:userName', {userName:'@userName'}, {"getAll": {method: "GET", isArray:true, params: {something: "foo"}}});
-    
+    'use strict';
+
+eventsApp.factory('userData', ['userResource', function (userResource) {
+//    debugger;
     return {
-        getUser: function(username) {
-            return resource.get({userName:username});
+        getUser:function(userName, callback) {
+            return userResource.get({userName:userName}, function (user) {
+                if (callback)
+                    callback(user);
+            });
         },
-        save: function(user) {
-            return resource.save(user);
+        save:function(user) {
+            userResource.save(user);
         },
-        getAllProfiles: function() {
-            return resource.query();
+        users:function () {
+            return userResource.queryAll(function(users) {
+                return users;
+            });
         }
     };
-});
+}]);

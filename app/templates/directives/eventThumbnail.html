@@ -1,23 +1,15 @@
-<a href="event/{{event.id}}">
-    <div class="well hoverwell">
-        <div class="row">
-            <h2 class="span6">{{event.name}}</h2>
+<a href="event/{{event._id}}">
+    <div class="dash-unit">
+        <dtitle>{{event.name}}</dtitle>
+        <hr>
+        <div class="thumbnail" style="height:110px;">
+            <img ng-src="{{event.imageUrl}}" alt="{{event.name}} image url" class="img-rounded" style="max-height:100px;">
         </div>
-        <div class="row">
-            <span class="span1">Date:</span>
-            <span>{{event.date}}</span>
-        </div>
-        <div class="row">
-            <span class="span1">Time:</span>
-            <span>{{event.time}}</span>
-        </div>
-        <div class="row">
-            <span class="span1">Location:</span>
-            <span>{{event.location.address}}</span>
-        </div>
-        <div class="row">
-            <span class="span1">&nbsp;</span>
-            <span>{{event.location.city}}, {{event.location.province}}</span>
-        </div>
+        <!-- /thumbnail -->
+        <h1>{{event.name}}</h1>
+        <h3>Date: {{event.date}}</h3>
+        <h3>Time: {{event.time}}</h3>
+        <h3>Location: {{event.location.address}}</h3>
+        <h3>{{event.location.city}}, {{event.location.province}}</h3>
     </div>
 </a>

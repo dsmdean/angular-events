@@ -1,65 +1,127 @@
 <!doctype html>
 <html lang="en" ng-app="eventsApp">
-    <head>
-        <base href="/" />
-        <meta charset="utf-8">
-        <title>Events</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/app.css" />
-    </head>
-    <body ng-cloak>
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8">
+    <title>Events</title>
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/font-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/register.css">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- Google Fonts call. Font Used Open Sans & Raleway -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-cloak>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar" ng-controller="MainMenuController">
-                <div class="navbar-inner">
-                    <ul class="nav">
-                        <li><a href="/events">Events</a></li>
-                        <li><a href="/newEvent">Create Event</a></li>
-                        <li><a href="/profiles">Profiles</a></li>
-                        <li><a href="/newProfile">Create Profile</a></li>
-                        <li><a href="/about">About</a></li>
-                    </ul>
-                </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="events"><img src="assets/img/logo30.png" alt=""> Event Registration</a>
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="events"><i class="icon-home icon-white"></i> Events</a></li>
+                    <li><a href="about"><i class="icon-folder-open icon-white"></i> About</a></li>
+                    <li><a href="user"><i class="icon-user icon-white"></i> User</a></li>
+                    <li><a href="register"><i class="icon-calendar icon-white"></i> Register</a></li>
+                    <li><a href="login"><i class="icon-lock icon-white"></i> Login</a></li>
+                    <li><a href=""><i class="icon-lock icon-white"></i> Logout</a></li>
 
-            <ng-view></ng-view>
-
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
         </div>
+    </div>
 
-        <script src="/lib/jquery.min.js"></script>
-        <script src="/lib/underscore-1.4.4.min.js"></script>
-        <script src="/lib/bootstrap.min.js"></script>
-        
-        <script src="/lib/angular/angular.js"></script>
-        <script src="/lib/angular/angular-resource.js"></script>
-        <script src="/lib/angular/angular-route.min.js"></script>
+    <div class="container" style="margin-top:3%;">
+        <ng-view></ng-view>
+    </div>
 
-        <script src="/js/app.js"></script>
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <p><img src="assets/img/logo.png" alt=""></p>
+                    <p>Angular Event Registration - Crafted With Love - Copyright 2013</p>
+                </div>
 
-        <script src="/js/controllers/MainMenuController.js"></script>
-        <script src="/js/controllers/EditEventController.js"></script>
-        <script src="/js/controllers/EventController.js"></script>
-        <script src="/js/controllers/EventListController.js"></script>
-        <script src="/js/controllers/EditProfileController.js"></script>
-        <script src="/js/controllers/ProfileController.js"></script>
-        <script src="/js/controllers/ProfileListController.js"></script>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /footerwrap -->
 
-        <script src="/js/services/EventData.js"></script>
-        <script src="/js/services/userResource.js"></script>
-        <script src="/js/services/UserData.js"></script>
-        <script src="/js/services/GravatarUrlBuilder.js"></script>
-        <script src="/js/services/calendarHelper.js"></script>
+    <script type="text/javascript" src="assets/js/admin.js"></script>
 
-        <script src="/js/directives/eventThumbnail.js"></script>
-        <script src="/js/directives/upvote.js"></script>
-        <script src="/js/directives/datekeys.js"></script>
-        <script src="/js/directives/gravatar.js"></script>
-        <script src="/js/directives/collapsible.js"></script>
-        <script src="/js/directives/datepicker.js"></script>
-        <script src="/js/directives/submitEnter.js"></script>
-        <script src="/js/directives/eventDetails.js"></script>
-        <script src="/js/directives/sessionThumbnail.js"></script>
-        <script src="/js/directives/dateInput.js"></script>
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/underscore-1.4.4.min.js"></script>
+    <script src="/lib/bootstrap.min.js"></script>
 
-        <script src="/js/filters.js"></script>
-    </body>
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular/angular-resource.js"></script>
+    <script src="/lib/angular/angular-route.min.js"></script>
+
+    <script src="/js/app.js"></script>
+
+    <script src="/js/controllers/MainMenuController.js"></script>
+    <script src="/js/controllers/EditEventController.js"></script>
+    <script src="/js/controllers/EventController.js"></script>
+    <script src="/js/controllers/EventListController.js"></script>
+    <script src="/js/controllers/EditProfileController.js"></script>
+    <script src="/js/controllers/ProfileController.js"></script>
+    <script src="/js/controllers/ProfileListController.js"></script>
+
+    <script src="/js/services/EventData.js"></script>
+    <script src="/js/services/userResource.js"></script>
+    <script src="/js/services/UserData.js"></script>
+    <script src="/js/services/GravatarUrlBuilder.js"></script>
+    <script src="/js/services/calendarHelper.js"></script>
+
+    <script src="/js/directives/eventThumbnail.js"></script>
+    <script src="/js/directives/upvote.js"></script>
+    <script src="/js/directives/datekeys.js"></script>
+    <script src="/js/directives/gravatar.js"></script>
+    <script src="/js/directives/collapsible.js"></script>
+    <script src="/js/directives/datepicker.js"></script>
+    <script src="/js/directives/submitEnter.js"></script>
+    <script src="/js/directives/eventDetails.js"></script>
+    <script src="/js/directives/sessionThumbnail.js"></script>
+    <script src="/js/directives/dateInput.js"></script>
+
+    <script src="/js/filters.js"></script>
+</body>
+
 </html>

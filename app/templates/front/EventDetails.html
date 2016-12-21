@@ -35,9 +35,27 @@
 
     <div class="col-lg-6">
         <div class="register-info-wraper">
-            <div id="register-info">
-                <div class="cont2">
+            <div id="register-info" style="text-align:center;" class="row">
+                <h2>Sessions</h2>
 
+                <div class="col-sm-offset-2 col-sm-4">
+                    Order By:
+                    <select ng-model="sortorder" class="form-control">
+                        <option selected value="name">Name</option>
+                        <option value="-upVoteCount">Votes</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" style="margin-bottom:25px;">
+                    Show:
+                    <select ng-model="query.level" class="form-control">
+                        <option selected value="">All</option>
+                        <option value="introductory">Introductory</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div ng-repeat="session in event.sessions | orderBy:sortorder | filter:query" id="session{{session.id}}" class="row">
+                    <session-thumbnail session="session" upvote="upVoteSession(session)" downvote="downVoteSession(session)"> </session-thumbnail>
                 </div>
             </div>
         </div>

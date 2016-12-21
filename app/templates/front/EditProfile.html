@@ -2,7 +2,7 @@
     <form name="newUserForm">
         <div class="row-fluid">
             <div class="span3">
-                <gravatar email="{{user.emailAddress}}"/>
+                <gravatar email="{{user.emailAddress}}" />
             </div>
             <div class="span3">
                 <fieldset>
@@ -30,7 +30,7 @@
         <div class="row-fluid">
             <div class="span6 offset3">
                 <div class="pull-left"><span class="btn">Cancel</span></div>
-                <div class="pull-right"><button type="submit" ng-disabled="newEventForm.$invalid" class="btn btn-primary" ng-click="saveEvent(user, newUserForm)">Save</button></div>
+                <div class="pull-right"><button type="submit" ng-disabled="newEventForm.$invalid" class="btn btn-primary" ng-click="saveUser(user, newUserForm)">Save</button></div>
             </div>
         </div>
     </form>

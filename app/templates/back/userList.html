@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-10 col-lg-10">
+        <h4 style="color: white;"><strong>All Users</strong></h4>
+        <div class="pull-right col-sm-2" style="margin-bottom:25px; color: white;">
+            Show:
+            <select ng-model="query.level" class="form-control">
+                <option selected value="">All</option>
+                <option value="introductory">Users</option>
+                <option value="intermediate">Admin</option>
+            </select>
+        </div>
+        <table class="display">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Admin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd" ng-repeat="user in users | orderBy:sortorder">
+                    <td>{{user.username}}</td>
+                    <td>{{user.firstname}} {{user.lastname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.admin}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--/END First Table -->
+        <br/>
+    </div>
+    <!--/span12 -->
+</div>

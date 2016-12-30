@@ -1,8 +1,12 @@
 'use strict';
 
 eventsApp.controller('UserController',
-    function UserController($scope, $localStorage, $location, gravatarUrlBuilder, userData) {
+    function UserController($scope, $localStorage, $location, gravatarUrlBuilder, userData, Authentication) {
         $scope.user = {};
+
+        if (!Authentication.isAuthenticated()) {
+            $location.path('/login');
+        }
 
         $scope.localstorage = $localStorage.getObject('Token', '{}');
 

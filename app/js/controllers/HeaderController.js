@@ -1,7 +1,7 @@
 'use strict';
 
 eventsApp.controller('HeaderController',
-    function HeaderController($scope, $rootScope, $localStorage, $location, $state, Authentication) {
+    function HeaderController($scope, $rootScope, $localStorage, $location, Authentication) {
         $scope.loggedIn = false;
         $scope.admin = false;
 
@@ -14,7 +14,7 @@ eventsApp.controller('HeaderController',
                 $scope.admin = true;
             }
 
-            $location.path('/user');
+            // $location.path('/user');
         }
 
         $rootScope.$on('login:Successful', function() {
@@ -35,8 +35,7 @@ eventsApp.controller('HeaderController',
             $scope.loggedIn = false;
             $scope.admin = false;
 
-            //$location.path('/events');
-            $state.go('app', {}, { reload: true });
+            $location.path('/login');
         };
     }
 );

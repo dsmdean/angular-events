@@ -12,6 +12,9 @@
             },
             updateUser: function(user) {
                 return resource.update({ id: user._id }, user);
+            },
+            deleteUser: function(userId) {
+                return resource.delete({ id: userId });
             }
         };
     });

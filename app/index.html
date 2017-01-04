@@ -13,6 +13,10 @@
     <link href="assets/css/table.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/register.css">
 
+    <link href="/lib/angular/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
+    <link href="/lib/angular/ng-dialog/css/ngDialog-theme-plain.min.css" rel="stylesheet">
+    <link href="/lib/angular/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet">
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
     <style type="text/css">
@@ -52,19 +56,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="events"><i class="icon-home icon-white"></i> Events</a></li>
-                    <li><a href="about"><i class="icon-folder-open icon-white"></i> About</a></li>
-                    <li><a href="about"><i class="icon-folder-open icon-white"></i> Contact</a></li>
-                    <li ng-if="loggedIn"><a href="user"><i class="icon-user icon-white"></i> User</a></li>
+                    <li ng-class="{'active': page == '/events'}"><a href="" ng-click="activate('/events')"><i class="icon-home icon-white"></i> Events</a></li>
+                    <li ng-class="{'active': page == '/about'}"><a href="" ng-click="activate('/about')"><i class="icon-folder-open icon-white"></i> About</a></li>
+                    <li ng-if="loggedIn" ng-class="{'active': page == '/user'}"><a href="" ng-click="activate('/user')"><i class="icon-user icon-white"></i> User</a></li>
                     <!--
                     <li><a href="register"><i class="icon-calendar icon-white"></i> Register</a></li>
                     -->
-                    <li ng-if="!loggedIn"><a href="login"><i class="icon-lock icon-white"></i> Login</a></li>
-                    <li class="dropdown" ng-if="admin">
+                    <li ng-if="!loggedIn" ng-class="{'active': page == '/login'}"><a href="" ng-click="activate('/login')"><i class="icon-lock icon-white"></i> Login</a></li>
+                    <li ng-class="{'active': page == '/admin/userlist' || page == '/admin/eventlist'}" class="dropdown" ng-if="admin">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-lock icon-white"></i> Admin <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="admin/userlist"><i class="icon-lock icon-white"></i> Users</a></li>
-                            <li><a href="admin/eventlist"><i class="icon-lock icon-white"></i> Events</a></li>
+                            <li ng-class="{'active': page == '/admin/userlist'}"><a href="" ng-click="activate('/admin/userlist')"><i class="icon-lock icon-white"></i> Users</a></li>
+                            <li ng-class="{'active': page == '/admin/eventlist'}"><a href="" ng-click="activate('/admin/eventlist')"><i class="icon-lock icon-white"></i> Events</a></li>
                         </ul>
                     </li>
                     <li ng-if="loggedIn"><a href="" ng-click="logOut()"><i class="icon-lock icon-white"></i> Logout</a></li>
@@ -103,6 +106,7 @@
     <script src="/lib/angular/angular.js"></script>
     <script src="/lib/angular/angular-resource.js"></script>
     <script src="/lib/angular/angular-route.min.js"></script>
+    <script src="/lib/angular/ng-dialog/js/ngDialog.min.js"></script>
 
     <script src="/js/app.js"></script>
 
@@ -114,6 +118,7 @@
     <script src="/js/controllers/HeaderController.js"></script>
     <script src="/js/controllers/UserController.js"></script>
     <script src="/js/controllers/AdminUserController.js"></script>
+    <script src="/js/controllers/AdminAddEventController.js"></script>
 
     <script src="/js/services/LocalStorage.js"></script>
     <script src="/js/services/EventData.js"></script>
@@ -133,6 +138,9 @@
     <script src="/js/directives/eventDetails.js"></script>
     <script src="/js/directives/sessionThumbnail.js"></script>
     <script src="/js/directives/dateInput.js"></script>
+    <script src="/js/directives/eventForm.js"></script>
+    <script src="/js/directives/userProfile.js"></script>
+    <script src="/js/directives/userUpdateForm.js"></script>
 
     <script src="/js/filters.js"></script>
 </body>

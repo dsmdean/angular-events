@@ -1,19 +1,16 @@
 <div class="row">
     <div class="col-sm-offset-1 col-sm-10 col-lg-10">
-        <h4 style="color: white;"><strong>All Events</strong></h4>
+        <div class="col-sm-2">
+            <h4 style="color: white;"><strong>All Events</strong></h4>
+        </div>
         <div class="pull-right col-sm-2" style="color: white;">
-            Order By:
-            <select ng-model="sortorder" class="form-control">
-                <option selected value="name">Name</option>
-                <option value="-upVoteCount">Date</option>
-            </select>
+            <a type="button" class="btn btn-default" href="admin/addEvent">Add Event</a>
         </div>
         <div class="pull-right col-sm-2" style="margin-bottom:25px; color: white;">
-            Show:
-            <select ng-model="query.level" class="form-control">
-                <option selected value="">All</option>
-                <option value="introductory">Upcoming</option>
-                <option value="intermediate">Past</option>
+            <select ng-model="sortorder" class="form-control">
+                <option selected value="">Order By</option>
+                <option value="name">Name</option>
+                <option value="date">Date</option>
             </select>
         </div>
         <table class="display">
@@ -23,6 +20,7 @@
                     <th>Date</th>
                     <th>Time</th>
                     <th>Location</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +29,12 @@
                     <td>{{event.date}}</td>
                     <td>{{event.time}}</td>
                     <td>{{event.location.address}} {{event.location.city}}, {{event.location.province}}</td>
+                    <td>
+                        <div class="info-user2" style="padding:0px;">
+                            <span aria-hidden="true" style="color:#b2c831; font-size: 21px;" class="li_pen fs1"></span>
+                            <span aria-hidden="true" style="color:red; font-size: 21px;" class="li_trash fs1" ng-click="deleteEvent(event._id)"></span>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

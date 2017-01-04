@@ -1,7 +1,7 @@
 'use strict';
 
 eventsApp.controller('UserController',
-    function UserController($scope, $localStorage, $location, gravatarUrlBuilder, userData, Authentication) {
+    function UserController($scope, $localStorage, $location, $route, gravatarUrlBuilder, userData, Authentication) {
         $scope.user = {};
 
         if (!Authentication.isAuthenticated()) {
@@ -10,7 +10,8 @@ eventsApp.controller('UserController',
 
         $scope.localstorage = $localStorage.getObject('Token', '{}');
 
-        $scope.user = userData.getUser($scope.localstorage.id);
+        $scope.user = $route.current.locals.user;
+        //$scope.user = userData.getUser($scope.localstorage.id);
         $scope.userU = userData.getUser($scope.localstorage.id);
 
         $scope.getGravatarUrl = function(email) {

@@ -4,6 +4,12 @@ eventsApp.controller('HeaderController',
     function HeaderController($scope, $rootScope, $localStorage, $location, Authentication) {
         $scope.loggedIn = false;
         $scope.admin = false;
+        $scope.page = $location.path();
+
+        $scope.activate = function(link) {
+            $scope.page = link;
+            $location.path(link);
+        };
 
         if (Authentication.isAuthenticated()) {
             $scope.loggedIn = true;
@@ -13,8 +19,6 @@ eventsApp.controller('HeaderController',
             if ('admin' in $scope.localstorage) {
                 $scope.admin = true;
             }
-
-            // $location.path('/user');
         }
 
         $rootScope.$on('login:Successful', function() {
@@ -26,7 +30,7 @@ eventsApp.controller('HeaderController',
                 $scope.admin = true;
             }
 
-            $location.path('/user');
+            $scope.activate('user');
 
         });
 
@@ -35,7 +39,7 @@ eventsApp.controller('HeaderController',
             $scope.loggedIn = false;
             $scope.admin = false;
 
-            $location.path('/login');
+            $scope.activate('login');
         };
     }
 );

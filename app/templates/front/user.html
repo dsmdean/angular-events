@@ -2,38 +2,16 @@
 
     <div class="col-lg-6">
         <div class="register-info-wraper">
-            <div id="register-info" style="padding:30px;">
-                <div class="cont2">
-                    <div class="thumbnail">
-                        <gravatar email="{{user.email}}" />
-                    </div>
-                    <!-- /thumbnail -->
-                    <h2>{{user.firstname}} {{user.lastname}}</h2>
-                </div><br/>
-                <div class="row">
-                    <div class="col-lg-offset-2 col-lg-4">
-                        <div class="cont3">
-                            <p>
-                                <ok>Username:</ok> {{user.username}}</p>
-                            <p>
-                                <ok>Mail:</ok> {{user.email}}</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="cont3">
-                            <p>
-                                <ok>Registered:</ok> {{user.createdAt | date:'MMM. dd, yyyy'}}</p>
-                            <p>
-                                <ok>Admin:</ok> {{user.admin}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <user-profile user="user"></user-profile>
         </div>
     </div>
 
     <div class="col-lg-6">
         <div class="register-info-wraper">
+            <!--
+            <user-update-form userU="userU" updateUser="updateUser()"></user-update-form>
+            -->
+
             <div id="register-info" class="row" style="color: white; padding: 30px;">
                 <div style="text-align:center">
                     <gravatar email="{{userU.email}}" />

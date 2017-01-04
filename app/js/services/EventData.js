@@ -11,6 +11,9 @@ eventsApp.factory('eventData', function($resource) {
         },
         getAllEvents: function() {
             return resource.query();
+        },
+        deleteEvent: function(eventId) {
+            return resource.delete({ id: eventId });
         }
     };
 });

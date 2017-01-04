@@ -1,0 +1,15 @@
+<div class="row">
+    <!-- USER PROFILE BLOCK -->
+    <div class="col-sm-offset-3 col-sm-6 col-lg-6">
+        <div class="dash-unit" style="height:750px;">
+            <dtitle>Event Registration</dtitle>
+            <hr>
+            <div class="cont2">
+                <div class="thumbnail" style="height:150px;">
+                    <img ng-src="{{event.imageUrl || defaultImg}}" alt="{{event.name}}" class="img-rounded" style="max-height:150px">
+                </div>
+            </div><br/>
+            <event-form event="event" saveEvent="saveEvent()"></event-form>
+        </div>
+    </div>
+</div>

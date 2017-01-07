@@ -1,30 +1,3 @@
-<!--
-<div style="padding-left:20px; padding-right:20px">   
-    <event-details event="event"></event-details>
-    
-    <hr/>
-    <h3>Sessions</h3>
-    Order By:
-    <select ng-model="sortorder" class="input-small">
-        <option selected value="name">Name</option>
-        <option value="-upVoteCount">Votes</option>
-    </select>
-    Show:
-    <select ng-model="query.level" class="input-medium">
-        <option selected value="">All</option>
-        <option value="introductory">Introductory</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
-    </select>
-    <ul class="thumbnails">
-        <li ng-repeat="session in event.sessions | orderBy:sortorder | filter:query" id="session{{session.id}}">
-            <session-thumbnail session="session" upvote="upVoteSession(session)" downvote="downVoteSession(session)"> </session-thumbnail>
-        </li>
-    </ul>
-</div>
--->
-
-
 <div class="row">
 
     <div class="col-lg-6">

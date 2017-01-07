@@ -1,7 +1,7 @@
 'use strict';
 
 eventsApp.controller('HeaderController',
-    function HeaderController($scope, $rootScope, $localStorage, $location, Authentication) {
+    function HeaderController($scope, $rootScope, $location, Authentication) {
         $scope.loggedIn = false;
         $scope.admin = false;
         $scope.page = $location.path();
@@ -14,9 +14,7 @@ eventsApp.controller('HeaderController',
         if (Authentication.isAuthenticated()) {
             $scope.loggedIn = true;
 
-            $scope.localstorage = $localStorage.getObject('Token', '{}');
-
-            if ('admin' in $scope.localstorage) {
+            if (Authentication.isAdmin()) {
                 $scope.admin = true;
             }
         }
@@ -24,9 +22,7 @@ eventsApp.controller('HeaderController',
         $rootScope.$on('login:Successful', function() {
             $scope.loggedIn = true;
 
-            $scope.localstorage = $localStorage.getObject('Token', '{}');
-
-            if ('admin' in $scope.localstorage) {
+            if (Authentication.isAdmin()) {
                 $scope.admin = true;
             }
 

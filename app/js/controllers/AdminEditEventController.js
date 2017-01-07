@@ -6,6 +6,10 @@ eventsApp.controller('AdminEditEventController',
         $scope.newSession = {};
         $scope.toggleAddSession = false;
 
+        if (!Authentication.isAuthenticated()) {
+            $location.path('/login');
+        }
+
         $scope.toggleNewSession = function() {
             $scope.toggleAddSession = true;
         };

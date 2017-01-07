@@ -4,7 +4,6 @@ eventsApp.controller('AdminUserController',
     function AdminUserController($scope, $location, $route, userData, Authentication, ngDialog) {
         $scope.users = {};
 
-        //$scope.users = userData.getAllUsers();
         $scope.users = $route.current.locals.users;
 
         if (!Authentication.isAuthenticated()) {

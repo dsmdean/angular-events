@@ -1,7 +1,7 @@
 'use strict';
 
 eventsApp.controller('EventController',
-    function EventController($scope, $routeParams, $route, $localStorage, $location, eventData, Authentication, ngDialog) {
+    function EventController($scope, $routeParams, $route, $location, eventData, Authentication, ngDialog) {
 
         $scope.sortorder = 'name';
         $scope.event = $route.current.locals.event;

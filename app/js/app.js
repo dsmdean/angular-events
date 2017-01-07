@@ -40,7 +40,7 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute', 'ngDialog'
         });
         $routeProvider.when('/admin/eventlist', {
             templateUrl: 'templates/back/eventList.html',
-            controller: 'EventListController',
+            controller: 'AdminEventController',
             resolve: {
                 events: function($route, eventData) {
                     return eventData.getAllEvents().$promise;

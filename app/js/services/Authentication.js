@@ -7,6 +7,7 @@ eventsApp
         var isAuthenticated = false;
         var username = '';
         var userId = '';
+        var admin = false;
         var authToken = undefined;
 
 
@@ -48,6 +49,7 @@ eventsApp
                     function(response) {
                         if (response.user.admin) {
                             storeUserCredentials({ id: response.user._id, username: loginData.username, token: response.token, admin: response.user.admin });
+                            admin = true;
                         } else {
                             storeUserCredentials({ id: response.user._id, username: loginData.username, token: response.token });
                         }
@@ -89,6 +91,10 @@ eventsApp
         };
 
         authFac.isAuthenticated = function() {
+            return isAuthenticated;
+        };
+
+        authFac.isAdmin = function() {
             return isAuthenticated;
         };
 

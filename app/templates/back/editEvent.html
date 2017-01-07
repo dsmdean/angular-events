@@ -45,7 +45,7 @@
     <div class="col-lg-6">
         <div class="register-info-wraper">
             <div id="register-info" style="text-align:center;" class="row">
-                <h2>Sessions</h2>
+                <h2>Sessions &nbsp;<a aria-hidden="true" href="" style="color:#b2c831; font-size: 25px;" ng-click="toggleNewSession()" title="Add New Session">&#x271A;</a></h2>
 
                 <div class="col-sm-offset-2 col-sm-4" style="color: white;">
                     Order By:
@@ -63,7 +63,50 @@
                         <option value="advanced">Advanced</option>
                     </select>
                 </div>
-                <div ng-repeat="session in event.sessions | orderBy:sortorder | filter:query" id="session{{session.id}}" class="row">
+
+                <div id="newSession" class="row" ng-if="toggleAddSession">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <div class="well well">
+                            <h4 class="well-title">{{newSession.name}}</h4>
+                            <h6 style="margin-top:-10px">{{newSession.creatorName}}</h6>
+                            <span>Duration: {{newSession.duration | durations}}</span><br/>
+                            <span>Level: {{newSession.level}} <i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></span><br/><br/>
+
+                            <p>{{newSession.abstract}}</p>
+
+                            <div>
+                                <span aria-hidden="true" style="color:#b2c831; font-size: 40px;">&#x270D;</span>
+                                <div class="row">
+                                    <form class="col-sm-offset-2 col-sm-8" style="text-align:left; ">
+                                        <div class="form-group ">
+                                            <label for="name ">Session Name:</label>
+                                            <input type="text " class="form-control " id="name " required placeholder="Name of your session... " ng-model="newSession.name ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="creatorName ">Creator Name:</label>
+                                            <input type="text " class="form-control " id="creatorName " required placeholder="Creator name... " ng-model="newSession.creatorName ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="duration ">Duration:</label>
+                                            <input type="number" required class="form-control" id="duration" name="duration" ng-model="newSession.duration" min="1" max="4">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="level ">Level:</label>
+                                            <input type="text " required class="form-control " id="level " placeholder="Level... " ng-model="newSession.level ">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="abstract ">Abstract:</label>
+                                            <input type="text " required class="form-control " id="abstract " placeholder="abstract... " ng-model="newSession.abstract">
+                                        </div>
+                                        <button type="submit " class="btn btn-default " ng-click="addNewSession(event._id, newSession)">Add Session</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-repeat="session in event.sessions | orderBy:sortorder | filter:query" id="session{{session._id}}" class="row">
                     <div>
                         <div class="col-sm-offset-1 col-sm-10">
                             <div class="well well">

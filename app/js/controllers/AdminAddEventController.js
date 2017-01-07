@@ -11,7 +11,18 @@ eventsApp.controller('AdminAddEventController',
                 .then(
                     function(response) {
                         console.log('success');
-                        $location.path("/admin/eventlist");
+                        ngDialog.openConfirm({
+                            template: '<p>You have added a new event: <strong>' + response.name + '</strong></p>' +
+                                '<div>' +
+                                '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">Ok </button>' +
+                                '</div>',
+                            plain: true,
+                            className: 'ngdialog-theme-default'
+                        }).then(function(value) {
+                            //Do something
+                        }, function(value) {
+                            $location.path("/admin/eventlist");
+                        });
                     }
                 )
                 .catch(

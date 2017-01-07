@@ -24,6 +24,9 @@ eventsApp.factory('eventData', function($resource) {
         voteSession: function(event, session, voteBody) {
             return resourceVote.update({ eventId: event._id, sessionId: session._id }, voteBody);
         },
+        addNewSession: function(eventId, session) {
+            return resourceSession.save({ eventId: eventId }, session);
+        },
         updateSession: function(eventId, session) {
             return resourceSession.update({ eventId: eventId, sessionId: session._id }, session);
         }

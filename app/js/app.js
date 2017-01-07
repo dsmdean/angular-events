@@ -22,19 +22,36 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute', 'ngDialog'
         });
         $routeProvider.when('/register', {
             templateUrl: 'templates/front/register.html',
-            controller: 'RegisterController'
+            controller: 'RegisterController',
+            resolve: {
+                user: function($route, $location, Authentication) {
+                    if (Authentication.isAuthenticated()) {
+                        $location.path('/user');
+                    }
+                }
+            }
         });
         $routeProvider.when('/login', {
             templateUrl: 'templates/front/login.html',
-            controller: 'LoginController'
+            controller: 'LoginController',
+            resolve: {
+                user: function($route, $location, Authentication) {
+                    if (Authentication.isAuthenticated()) {
+                        $location.path('/user');
+                    }
+                }
+            }
         });
         $routeProvider.when('/user', {
             templateUrl: 'templates/front/user.html',
             controller: 'UserController',
             resolve: {
-                user: function($route, $localStorage, userData) {
-                    var localstorage = $localStorage.getObject('Token', '{}');
-                    return userData.getUser(localstorage.id).$promise;
+                user: function($route, $location, userData, Authentication) {
+                    if (!Authentication.isAuthenticated()) {
+                        $location.path('/login');
+                    } else {
+                        return userData.getUser(Authentication.getUserId()).$promise;
+                    }
                 }
             }
         });
@@ -42,21 +59,42 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute', 'ngDialog'
             templateUrl: 'templates/back/eventList.html',
             controller: 'AdminEventController',
             resolve: {
-                events: function($route, eventData) {
-                    return eventData.getAllEvents().$promise;
+                events: function($route, $location, eventData, Authentication) {
+                    if (!Authentication.isAuthenticated()) {
+                        $location.path('/login');
+                    } else if (!Authentication.isAdmin()) {
+                        $location.path('/user');
+                    } else {
+                        return eventData.getAllEvents().$promise;
+                    }
                 }
             }
         });
         $routeProvider.when('/admin/addEvent', {
             templateUrl: 'templates/back/addEvent.html',
-            controller: 'AdminAddEventController'
+            controller: 'AdminAddEventController',
+            resolve: {
+                events: function($route, $location, Authentication) {
+                    if (!Authentication.isAuthenticated()) {
+                        $location.path('/login');
+                    } else if (!Authentication.isAdmin()) {
+                        $location.path('/user');
+                    }
+                }
+            }
         });
         $routeProvider.when('/admin/editEvent/:eventId', {
             templateUrl: 'templates/back/editEvent.html',
             controller: 'AdminEditEventController',
             resolve: {
-                event: function($route, eventData) {
-                    return eventData.getEvent($route.current.pathParams.eventId).$promise;
+                event: function($route, $location, eventData, Authentication) {
+                    if (!Authentication.isAuthenticated()) {
+                        $location.path('/login');
+                    } else if (!Authentication.isAdmin()) {
+                        $location.path('/user');
+                    } else {
+                        return eventData.getEvent($route.current.pathParams.eventId).$promise;
+                    }
                 }
             }
         });
@@ -64,8 +102,14 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute', 'ngDialog'
             templateUrl: 'templates/back/userList.html',
             controller: 'AdminUserController',
             resolve: {
-                users: function($route, userData) {
-                    return userData.getAllUsers().$promise;
+                users: function($route, $location, userData, Authentication) {
+                    if (!Authentication.isAuthenticated()) {
+                        $location.path('/login');
+                    } else if (!Authentication.isAdmin()) {
+                        $location.path('/user');
+                    } else {
+                        return userData.getAllUsers().$promise;
+                    }
                 }
             }
         });

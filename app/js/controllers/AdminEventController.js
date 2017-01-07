@@ -1,7 +1,7 @@
 'use strict';
 
 eventsApp.controller('AdminEventController',
-    function AdminEventController($scope, $route, $location, eventData, ngDialog) {
+    function AdminEventController($scope, $route, $location, eventData, Authentication, ngDialog) {
 
         $scope.sortorder = 'name';
         $scope.events = $route.current.locals.events;

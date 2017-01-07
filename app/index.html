@@ -55,18 +55,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li ng-class="{'active': page == '/events'}"><a href="" ng-click="activate('/events')"><i class="icon-home icon-white"></i> Events</a></li>
-                    <li ng-class="{'active': page == '/about'}"><a href="" ng-click="activate('/about')"><i class="icon-folder-open icon-white"></i> About</a></li>
-                    <li ng-if="loggedIn" ng-class="{'active': page == '/user'}"><a href="" ng-click="activate('/user')"><i class="icon-user icon-white"></i> User</a></li>
+                    <li ng-class="getClass('/events')"><a href="/events"><i class="icon-home icon-white"></i> Events</a></li>
+                    <li ng-class="getClass('/about')"><a href="/about"><i class="icon-folder-open icon-white"></i> About</a></li>
+                    <li ng-if="loggedIn" ng-class="getClass('/user')"><a href="/user"><i class="icon-user icon-white"></i> User</a></li>
                     <!--
                     <li><a href="register"><i class="icon-calendar icon-white"></i> Register</a></li>
                     -->
-                    <li ng-if="!loggedIn" ng-class="{'active': page == '/login'}"><a href="" ng-click="activate('/login')"><i class="icon-lock icon-white"></i> Login</a></li>
-                    <li ng-class="{'active': page == '/admin/userlist' || page == '/admin/eventlist'}" class="dropdown" ng-if="admin">
+                    <li ng-if="!loggedIn" ng-class="getClass('/login')"><a href="/login"><i class="icon-lock icon-white"></i> Login</a></li>
+                    <li ng-class="getClass('/admin/userlist') || getClass('/admin/eventlist') || getClass('/admin/addEvent') || getClass('/admin/editEvent')" class="dropdown" ng-if="admin">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-lock icon-white"></i> Admin <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li ng-class="{'active': page == '/admin/userlist'}"><a href="" ng-click="activate('/admin/userlist')"><i class="icon-lock icon-white"></i> Users</a></li>
-                            <li ng-class="{'active': page == '/admin/eventlist'}"><a href="" ng-click="activate('/admin/eventlist')"><i class="icon-lock icon-white"></i> Events</a></li>
+                            <li ng-class="getClass('/admin/userlist')"><a href="/admin/userlist"><i class="icon-lock icon-white"></i> Users</a></li>
+                            <li ng-class="getClass('/admin/eventlist')"><a href="/admin/eventlist"><i class="icon-lock icon-white"></i> Events</a></li>
                         </ul>
                     </li>
                     <li ng-if="loggedIn"><a href="" ng-click="logOut()"><i class="icon-lock icon-white"></i> Logout</a></li>

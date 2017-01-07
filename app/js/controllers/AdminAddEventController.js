@@ -1,13 +1,9 @@
 'use strict';
 
 eventsApp.controller('AdminAddEventController',
-    function AdminAddEventController($scope, $location, eventData) {
+    function AdminAddEventController($scope, $location, eventData, Authentication) {
         $scope.event = {};
         $scope.defaultImg = "http://www.freelancedesignerindia.com/wp-content/uploads/2015/02/angular-js-swap-ng-src-attributes-img-tag-660x330.jpg";
-
-        if (!Authentication.isAuthenticated()) {
-            $location.path('/login');
-        }
 
         $scope.saveEvent = function(event) {
             eventData.save(event)

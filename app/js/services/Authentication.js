@@ -7,7 +7,7 @@ eventsApp
         var isAuthenticated = false;
         var username = '';
         var userId = '';
-        var admin = false;
+        var isAdmin = false;
         var authToken = undefined;
 
 
@@ -29,6 +29,10 @@ eventsApp
             userId = credentials.id;
             authToken = credentials.token;
 
+            if (credentials.admin) {
+                isAdmin = true;
+            }
+
             // Set the token as header for your requests!
             $http.defaults.headers.common['x-access-token'] = authToken;
         }
@@ -49,7 +53,7 @@ eventsApp
                     function(response) {
                         if (response.user.admin) {
                             storeUserCredentials({ id: response.user._id, username: loginData.username, token: response.token, admin: response.user.admin });
-                            admin = true;
+                            isAdmin = true;
                         } else {
                             storeUserCredentials({ id: response.user._id, username: loginData.username, token: response.token });
                         }
@@ -95,7 +99,7 @@ eventsApp
         };
 
         authFac.isAdmin = function() {
-            return isAuthenticated;
+            return isAdmin;
         };
 
         authFac.getUsername = function() {

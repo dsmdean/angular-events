@@ -6,10 +6,9 @@ eventsApp.controller('HeaderController',
         $scope.admin = false;
         $scope.page = $location.path();
 
-        $scope.activate = function(link) {
-            $scope.page = link;
-            $location.path(link);
-        };
+        $scope.getClass = function(path) {
+            return ($location.path().substr(0, path.length) === path || $location.path().substr(0, 16) === path) ? 'active' : '';
+        }
 
         if (Authentication.isAuthenticated()) {
             $scope.loggedIn = true;
@@ -26,7 +25,7 @@ eventsApp.controller('HeaderController',
                 $scope.admin = true;
             }
 
-            $scope.activate('user');
+            $location.path("user");
 
         });
 
@@ -35,7 +34,7 @@ eventsApp.controller('HeaderController',
             $scope.loggedIn = false;
             $scope.admin = false;
 
-            $scope.activate('login');
+            $location.path("login");
         };
     }
 );

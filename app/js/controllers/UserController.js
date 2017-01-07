@@ -2,12 +2,6 @@
 
 eventsApp.controller('UserController',
     function UserController($scope, $location, $route, gravatarUrlBuilder, userData, Authentication, ngDialog) {
-        $scope.user = {};
-
-        if (!Authentication.isAuthenticated()) {
-            $location.path('/login');
-        }
-
         $scope.user = $route.current.locals.user;
 
         $scope.getGravatarUrl = function(email) {

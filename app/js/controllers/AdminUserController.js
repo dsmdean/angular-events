@@ -3,12 +3,7 @@
 eventsApp.controller('AdminUserController',
     function AdminUserController($scope, $location, $route, userData, Authentication, ngDialog) {
         $scope.users = {};
-
         $scope.users = $route.current.locals.users;
-
-        if (!Authentication.isAuthenticated()) {
-            $location.path('/login');
-        }
 
         $scope.deleteUser = function(userId) {
             ngDialog.openConfirm({

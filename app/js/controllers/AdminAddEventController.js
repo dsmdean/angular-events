@@ -1,7 +1,7 @@
 'use strict';
 
 eventsApp.controller('AdminAddEventController',
-    function AdminAddEventController($scope, eventData) {
+    function AdminAddEventController($scope, $location, eventData) {
         $scope.event = {};
         $scope.defaultImg = "http://www.freelancedesignerindia.com/wp-content/uploads/2015/02/angular-js-swap-ng-src-attributes-img-tag-660x330.jpg";
 
@@ -10,7 +10,8 @@ eventsApp.controller('AdminAddEventController',
                 .$promise
                 .then(
                     function(response) {
-                        console.log('success', response);
+                        console.log('success');
+                        $location.path("/admin/eventlist");
                     }
                 )
                 .catch(

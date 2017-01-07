@@ -26,12 +26,12 @@
             <tbody>
                 <tr class="odd" ng-repeat="event in events | orderBy:sortorder">
                     <td>{{event.name}}</td>
-                    <td>{{event.date}}</td>
+                    <td>{{event.date | date:'MMM. dd, yyyy'}}</td>
                     <td>{{event.time}}</td>
                     <td>{{event.location.address}} {{event.location.city}}, {{event.location.province}}</td>
                     <td>
                         <div class="info-user2" style="padding:0px;">
-                            <span aria-hidden="true" style="color:#b2c831; font-size: 21px;" class="li_pen fs1"></span>
+                            <span aria-hidden="true" style="color:#b2c831; font-size: 21px;" class="li_pen fs1" ng-click="editEvent(event._id)"></span>
                             <span aria-hidden="true" style="color:red; font-size: 21px;" class="li_trash fs1" ng-click="deleteEvent(event._id)"></span>
                         </div>
                     </td>

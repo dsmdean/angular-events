@@ -1,0 +1,112 @@
+<div class="row">
+
+    <div class="col-lg-6">
+        <div class="register-info-wraper" style="height: 720px; color: white;">
+            <div id="register-info">
+                <div class="cont2">
+                    <div class="thumbnail" style="height:150px;">
+                        <img ng-src="{{event.imageUrl || defaultImg}}" alt="{{event.name}}" class="img-rounded" style="max-height:150px">
+                    </div>
+                </div><br/>
+                <!--
+                <event-form event="event" saveEvent="saveEvent()"></event-form>
+                -->
+
+                <form class="col-sm-offset-2 col-sm-8">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" required placeholder="Name of your event..." ng-model="event.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" id="date" required value="{{event.date | date:'yyyy-MM-dd'}}" ng-model="event.date">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time:</label>
+                        <input type="text" required class="form-control" id="time" placeholder="Start and end time..." ng-model="event.time">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventLocation">Location:</label>
+                        <input type="text" class="form-control" id="eventLocation" placeholder="Address of event..." ng-model="event.location.address">
+                        <input type="text" class="form-control" id="eventLocation" placeholder="City..." ng-model="event.location.city">
+                        <input type="text" class="form-control" id="eventLocation" placeholder="Province..." ng-model="event.location.province">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="text" class="form-control" id="image" placeholder="Url of image..." ng-model="event.imageUrl">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="updateEvent(event)">Submit</button>
+                    <p class="pull-right"><a href="/admin/eventlist">Go back to the Event List</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="register-info-wraper">
+            <div id="register-info" style="text-align:center;" class="row">
+                <h2>Sessions</h2>
+
+                <div class="col-sm-offset-2 col-sm-4" style="color: white;">
+                    Order By:
+                    <select ng-model="sortorder" class="form-control">
+                        <option selected value="name">Name</option>
+                        <option value="-upVoteCount">Votes</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" style="margin-bottom:25px; color: white;">
+                    Show:
+                    <select ng-model="query.level" class="form-control">
+                        <option selected value="">All</option>
+                        <option value="introductory">Introductory</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div ng-repeat="session in event.sessions | orderBy:sortorder | filter:query" id="session{{session.id}}" class="row">
+                    <div>
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <div class="well well">
+                                <h4 class="well-title">{{session.name}}</h4>
+                                <h6 style="margin-top:-10px">{{session.creatorName}}</h6>
+                                <span>Duration: {{session.duration | durations}}</span><br/>
+                                <span>Level: {{session.level}} <i class="icon-star"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></span><br/><br/>
+
+                                <p>{{session.abstract}}</p>
+
+                                <collaps-edit-session>
+                                    <div class="row">
+                                        <form class="col-sm-offset-2 col-sm-8" style="text-align:left; ">
+                                            <div class="form-group ">
+                                                <label for="name ">Session Name:</label>
+                                                <input type="text " class="form-control " id="name " required placeholder="Name of your session... " ng-model="session.name ">
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="date ">Creator Name:</label>
+                                                <input type="text " class="form-control " id="date " required ng-model="session.creatorName ">
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="time ">Duration:</label>
+                                                <input type="number" required class="form-control" id="time" name="quantity" ng-model="session.duration" min="1" max="4">
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="time ">Level:</label>
+                                                <input type="text " required class="form-control " id="time " placeholder="Level... " ng-model="session.level ">
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="time ">Abstract:</label>
+                                                <input type="text " required class="form-control " id="time " placeholder="Level... " ng-model="session.abstract">
+                                            </div>
+                                            <button type="submit " class="btn btn-default " ng-click="updateSession(event._id, session)">Update Session</button>
+                                        </form>
+                                    </div>
+                                </collaps-edit-session>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

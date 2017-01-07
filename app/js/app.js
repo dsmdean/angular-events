@@ -51,6 +51,15 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute', 'ngDialog'
             templateUrl: 'templates/back/addEvent.html',
             controller: 'AdminAddEventController'
         });
+        $routeProvider.when('/admin/editEvent/:eventId', {
+            templateUrl: 'templates/back/editEvent.html',
+            controller: 'AdminEditEventController',
+            resolve: {
+                event: function($route, eventData) {
+                    return eventData.getEvent($route.current.pathParams.eventId).$promise;
+                }
+            }
+        });
         $routeProvider.when('/admin/userlist', {
             templateUrl: 'templates/back/userList.html',
             controller: 'AdminUserController',

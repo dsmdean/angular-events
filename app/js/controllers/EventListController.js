@@ -1,11 +1,15 @@
 'use strict';
 
 eventsApp.controller('EventListController',
-    function EventListController($scope, $route, eventData, ngDialog) {
+    function EventListController($scope, $route, $location, eventData, ngDialog) {
 
         $scope.sortorder = 'name';
         $scope.events = $route.current.locals.events;
         //$scope.events = eventData.getAllEvents();
+
+        $scope.editEvent = function(eventId) {
+            $location.path('/admin/editEvent/' + eventId);
+        };
 
         $scope.deleteEvent = function(eventId) {
             ngDialog.openConfirm({
@@ -17,7 +21,7 @@ eventsApp.controller('EventListController',
                 plain: true,
                 className: 'ngdialog-theme-default'
             }).then(function(value) {
-                //eventData.deleteEvent(eventId);
+                eventData.deleteEvent(eventId);
                 $location.path('/admin/eventlist');
             }, function(value) {
                 //Do something 

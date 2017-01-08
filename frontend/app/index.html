@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" ng-app="eventsApp">
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8">
+    <title>Event Registration</title>
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/font-style.css" rel="stylesheet">
+    <link href="assets/css/table.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/register.css">
+
+    <link href="/lib/angular/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
+    <link href="/lib/angular/ng-dialog/css/ngDialog-theme-plain.min.css" rel="stylesheet">
+    <link href="/lib/angular/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- Google Fonts call. Font Used Open Sans & Raleway -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-cloak>
+    <!-- NAVIGATION MENU -->
+    <div class="navbar-nav navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="events"><img src="assets/img/logo30.png" alt=""> Event Registration</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="getClass('/events')"><a href="/events"><i class="icon-home icon-white"></i> Events</a></li>
+                    <li ng-class="getClass('/about')"><a href="/about"><i class="icon-folder-open icon-white"></i> About</a></li>
+                    <li ng-if="loggedIn" ng-class="getClass('/user')"><a href="/user"><i class="icon-user icon-white"></i> User</a></li>
+                    <!--
+                    <li><a href="register"><i class="icon-calendar icon-white"></i> Register</a></li>
+                    -->
+                    <li ng-if="!loggedIn" ng-class="getClass('/login')"><a href="/login"><i class="icon-lock icon-white"></i> Login</a></li>
+                    <li ng-class="getClass('/admin/userlist') || getClass('/admin/eventlist') || getClass('/admin/addEvent') || getClass('/admin/editEvent')" class="dropdown" ng-if="admin">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-lock icon-white"></i> Admin <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li ng-class="getClass('/admin/userlist')"><a href="/admin/userlist"><i class="icon-lock icon-white"></i> Users</a></li>
+                            <li ng-class="getClass('/admin/eventlist')"><a href="/admin/eventlist"><i class="icon-lock icon-white"></i> Events</a></li>
+                        </ul>
+                    </li>
+                    <li ng-if="loggedIn"><a href="" ng-click="logOut()"><i class="icon-lock icon-white"></i> Logout</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container" style="margin-top:3%;">
+        <ng-view></ng-view>
+    </div>
+
+    <div id="footerwrap">
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <p><img src="assets/img/logo.png" alt=""></p>
+                    <p>Angular Event Registration - Crafted With Love - Copyright 2013</p>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /footerwrap -->
+
+    <script type="text/javascript" src="assets/js/admin.js"></script>
+
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/underscore-1.4.4.min.js"></script>
+    <script src="/lib/bootstrap.min.js"></script>
+
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/lib/angular/angular-resource.js"></script>
+    <script src="/lib/angular/angular-route.min.js"></script>
+    <script src="/lib/angular/ng-dialog/js/ngDialog.min.js"></script>
+
+    <script src="/js/app.js"></script>
+
+    <script src="/js/controllers/EventController.js"></script>
+    <script src="/js/controllers/EventListController.js"></script>
+    <script src="/js/controllers/RegisterController.js"></script>
+    <script src="/js/controllers/LoginController.js"></script>
+    <script src="/js/controllers/HeaderController.js"></script>
+    <script src="/js/controllers/UserController.js"></script>
+    <script src="/js/controllers/AdminUserController.js"></script>
+    <script src="/js/controllers/AdminAddEventController.js"></script>
+    <script src="/js/controllers/AdminEditEventController.js"></script>
+    <script src="/js/controllers/AdminEventController.js"></script>
+
+    <script src="/js/services/LocalStorage.js"></script>
+    <script src="/js/services/EventData.js"></script>
+    <script src="/js/services/UserData.js"></script>
+    <script src="/js/services/Authentication.js"></script>
+    <script src="/js/services/GravatarUrlBuilder.js"></script>
+    <script src="/js/services/calendarHelper.js"></script>
+
+    <script src="/js/directives/eventThumbnail.js"></script>
+    <script src="/js/directives/upvote.js"></script>
+    <script src="/js/directives/datekeys.js"></script>
+    <script src="/js/directives/gravatar.js"></script>
+    <script src="/js/directives/collapsible.js"></script>
+    <script src="/js/directives/collapsEditSession.js"></script>
+    <script src="/js/directives/datepicker.js"></script>
+    <script src="/js/directives/submitEnter.js"></script>
+    <script src="/js/directives/eventDetails.js"></script>
+    <script src="/js/directives/sessionThumbnail.js"></script>
+    <script src="/js/directives/dateInput.js"></script>
+    <script src="/js/directives/eventForm.js"></script>
+    <script src="/js/directives/userProfile.js"></script>
+    <script src="/js/directives/userUpdateForm.js"></script>
+
+    <script src="/js/filters.js"></script>
+</body>
+
+</html>

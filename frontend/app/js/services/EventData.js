@@ -1,7 +1,8 @@
 eventsApp.factory('eventData', function($resource) {
-    var resource = $resource('http://localhost:3000/server/events/:id', { id: '@id' }, { 'update': { method: 'PUT' } });
-    var resourceVote = $resource('http://localhost:3000/server/events/:eventId/sessions/:sessionId/vote', { eventId: '@eventId', sessionId: '@sessionId' }, { 'update': { method: 'PUT' } });
-    var resourceSession = $resource('http://localhost:3000/server/events/:eventId/sessions/:sessionId', { eventId: '@eventId', sessionId: '@sessionId' }, { 'update': { method: 'PUT' } });
+    var baseUrl = 'http://localhost:3000';
+    var resource = $resource(baseUrl + '/server/events/:id', { id: '@id' }, { 'update': { method: 'PUT' } });
+    var resourceVote = $resource(baseUrl + '/server/events/:eventId/sessions/:sessionId/vote', { eventId: '@eventId', sessionId: '@sessionId' }, { 'update': { method: 'PUT' } });
+    var resourceSession = $resource(baseUrl + '/server/events/:eventId/sessions/:sessionId', { eventId: '@eventId', sessionId: '@sessionId' }, { 'update': { method: 'PUT' } });
 
     return {
         getEvent: function(eventId) {

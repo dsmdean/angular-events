@@ -1,39 +1,58 @@
 'use strict';
 
 describe('userData', function() {
-    var mockUserResource;
-
+    var baseURL = 'http://localhost:3000';
     beforeEach(module('eventsApp'));
 
-    beforeEach(function() {
-        mockUserResource = sinon.stub({get: function() {}, save: function() {}});
-        module(function($provide) {
-            $provide.value('userResource', mockUserResource);
-        });
-    });
+    // it('should issue a GET request to /server/users/11 when getUser is called and the id is 11',
+    //     inject(function(userData, $httpBackend) {
+    //         $httpBackend.expectGET(baseURL + '/server/users/11');
+    //         $httpBackend.when('GET', baseURL + '/server/users/11').respond({});
+    //         userData.getUser(11);
+    //         $httpBackend.flush();
 
-    describe('getUser', function() {
-        
-        it('should call getresource.get with the username', inject(function(userData) {
-            userData.getUser('bob');
+    //         $httpBackend.verifyNoOutstandingExpectation();
+    //         $httpBackend.verifyNoOutstandingRequest();
+    //     })
+    // );
 
-            expect(mockUserResource.get.args[0][0]).toEqual({userName: 'bob'});
-        }));
+    it('should return the correct data when getUser is called',
+        inject(function(userData, $httpBackend) {
+            $httpBackend.when('GET', baseURL + '/server/users/11').respond({ name: 'My name' });
+            var user = userData.getUser(11);
+            $httpBackend.flush();
 
-        it('should return whatever userResource.get returns', inject(function(userData) {
-            mockUserResource.get.returns('angular rocks');
-            var result = userData.getUser('bob');
+            expect(user.name).toBe('My name');
+        })
+    );
 
-            expect(result).toBe('angular rocks');
-        }));
-    });
+    it('should return the correct data when getAllUsers is called',
+        inject(function(userData, $httpBackend) {
+            $httpBackend.when('GET', baseURL + '/server/users').respond([{ name: 'My Name' }]);
+            var users = userData.getAllUsers();
+            $httpBackend.flush();
 
-    describe('save', function() {
-        
-        it('should call userResource.save with the same parameter', inject(function(userData) {
-            userData.save('some value');
+            expect(users[0].name).toBe('My Name');
+        })
+    );
 
-            expect(mockUserResource.save.calledWith('some value')).toBe(true);
-        }));
-    });
+    it('should issue a put request to /server/users/11 when updateUser is called',
+        inject(function(userData, $httpBackend) {
+            $httpBackend.when('PUT', baseURL + '/server/users/11').respond({ response: 'success' });
+            var user = userData.updateUser({ _id: 11, name: 'Awesome Name' });
+            $httpBackend.flush();
+
+            expect(user.response).toBe('success');
+        })
+    );
+
+    it('should issue a delete request to /server/users/11 when deleteUser is called',
+        inject(function(userData, $httpBackend) {
+            $httpBackend.when('DELETE', baseURL + '/server/users/11').respond({ response: 'success' });
+            var user = userData.deleteUser(11);
+            $httpBackend.flush();
+
+            expect(user.response).toBe('success');
+        })
+    );
 });

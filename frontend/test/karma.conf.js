@@ -1,42 +1,43 @@
-module.exports = function(config){
-  config.set({
+module.exports = function(config) {
+    config.set({
 
-    basePath : '../app',
+        basePath: '../app',
 
-    preprocessors: {
-      '**/*.html':'ng-html2js'
-    },
+        preprocessors: {
+            '**/*.html': 'ng-html2js'
+        },
 
-    ngHtml2JsPreprocessor: {
-      prependPrefix: '/'
-    },
+        ngHtml2JsPreprocessor: {
+            prependPrefix: '/'
+        },
 
-    files : [
-      'lib/angular/angular.js',
-      'lib/angular/angular-*.js',
-      '../test/lib/angular-mocks.js',
-      '../test/lib/sinon-1.15.0.js',
-      'js/**/*.js',
-      '../test/unit/**/*.js',
-      '**/*.html'
-    ],
+        files: [
+            'lib/angular/angular.js',
+            'lib/angular/angular-*.js',
+            'lib/angular/ng-dialog/js/ngDialog.min.js',
+            '../test/lib/angular-mocks.js',
+            '../test/lib/sinon-1.15.0.js',
+            'js/**/*.js',
+            '../test/unit/**/*.js',
+            '**/*.html'
+        ],
 
-    autoWatch : true,
+        autoWatch: true,
 
-    frameworks: ['jasmine'],
+        frameworks: ['jasmine'],
 
-    browsers : ['Chrome'],
+        browsers: ['Chrome'],
 
-    plugins : [
-      'karma-chrome-launcher',
-      'karma-jasmine',
-      'karma-ng-html2js-preprocessor'
-    ],
+        plugins: [
+            'karma-chrome-launcher',
+            'karma-jasmine',
+            'karma-ng-html2js-preprocessor'
+        ],
 
-    junitReporter : {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+        junitReporter: {
+            outputFile: 'test_out/unit.xml',
+            suite: 'unit'
+        }
 
-  });
+    });
 };

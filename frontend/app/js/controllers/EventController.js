@@ -1,7 +1,7 @@
 'use strict';
 
 eventsApp.controller('EventController',
-    function EventController($scope, $routeParams, $route, $location, eventData, Authentication, ngDialog) {
+    function EventController($scope, $route, eventData, Authentication, ngDialog) {
 
         $scope.sortorder = 'name';
         $scope.event = $route.current.locals.event;
@@ -28,7 +28,6 @@ eventsApp.controller('EventController',
                         }
                     );
             } else {
-                //$location.path("/login");
                 ngDialog.openConfirm({
                     template: '<p>You have to login if you want to vote!</p>' +
                         '<div>' +

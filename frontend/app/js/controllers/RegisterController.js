@@ -8,10 +8,8 @@ eventsApp.controller('RegisterController',
             return gravatarUrlBuilder.buildGravatarUrl(email);
         }
 
-        $scope.register = function(user, newUserForm) {
-            if (newUserForm.$valid) {
-                Authentication.register(user);
-            }
+        $scope.register = function(user) {
+            Authentication.register(user);
         };
     }
 );

@@ -14,4 +14,5 @@ SETUP
 - Make sure mongodb is running
 - Create a database "angularEvents"
 - Import the two collections in the folder db
+- You can access the app through http://localhost:8000/
 - You can log in as an admin using username: 'dsmdean'. For a regular user you can use 'mkmarita' or 'outcast'. The passwords for all of the users is 'adminroot'
